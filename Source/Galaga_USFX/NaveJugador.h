@@ -32,15 +32,15 @@ public:
 	FORCEINLINE int GetVidasRestantes() const { return VidasRestantes; }
 
 	// Setters para las posiciones
-	FORCEINLINE void SetPosicionX(float NewX) { PosicionX = NewX; }
-	FORCEINLINE void SetPosicionY(float NewY) { PosicionY = NewY; }
-	FORCEINLINE void SetPosicionZ(float NewZ) { PosicionZ = NewZ; }
+	FORCEINLINE void SetPosicionX(float _npx) { PosicionX = _npx; }
+	FORCEINLINE void SetPosicionY(float _npy) { PosicionY = _npy; }
+	FORCEINLINE void SetPosicionZ(float _npz) { PosicionZ = _npz; }
 
 	// Setter para el puntaje acumulado
-	FORCEINLINE void SetPuntajeAcumulado(float NewPuntaje) { PuntajeAcumulado = NewPuntaje; }
+	FORCEINLINE void SetPuntajeAcumulado(float _nuevoPuntaje) { PuntajeAcumulado = _nuevoPuntaje; }
 
 	// Setter para las vidas restantes
-	FORCEINLINE void SetVidasRestantes(int NewVidas) { VidasRestantes = NewVidas; }
+	FORCEINLINE void SetVidasRestantes(int _ControladorDeVidas) { VidasRestantes = _ControladorDeVidas; }
 
 private:
 

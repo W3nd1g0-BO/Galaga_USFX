@@ -10,7 +10,15 @@ UCLASS()
 class GALAGA_USFX_API ANaveEnemiga : public AActor
 {
 	GENERATED_BODY()
+private:
+	float PosicionX;
+	float PosicionY;
+	float PosicionZ;
+	float PuntajeOtorgado;
 	
+public:
+
+
 public:	
 	// Sets default values for this actor's properties
 	ANaveEnemiga();
