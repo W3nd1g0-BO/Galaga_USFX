@@ -5,8 +5,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "NaveEnemiga.generated.h"
 #include "Comp_MovimientoNaves.h"
+
+#include "NaveEnemiga.generated.h"
+
 
 class UStaticMeshComponent;
 
@@ -18,7 +20,8 @@ class GALAGA_USFX_API ANaveEnemiga : public AActor
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Projectile, meta = (AllowPrivateAccess = "true"))
 		UStaticMeshComponent* mallaNaveEnemiga;
-		UComp_MovimientoNaves* compMovimientoNaves;
+		UComp_MovimientoNaves* MovGeneralNaves;
+		
 public:
 
 	UStaticMeshComponent* meshNaveEnemiga;
@@ -57,6 +60,8 @@ public:
 	FORCEINLINE void SetNombre(FString _nombre)  {nombre=_nombre; }
 	//FORCEINLINE void SetTrayectoria(FVector _trayectoria) { trayectoria = _trayectoria; }
 
+public: 
+	bool bMovPredeterminado;
 public:	
 	// Sets default values for this actor's properties
 	ANaveEnemiga();
@@ -67,8 +72,10 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	
 
 protected:
+
     void Mover(float DeltaTime) PURE_VIRTUAL(ANaveEnemiga::Mover, ); //Funcion virtual pura para mover la nave enemiga
 
 	//void daño() PURE_VIRTUAL(ANaveEnemiga::daño);	//contabiliza el daño recibido

@@ -11,12 +11,19 @@ void ANaveColmena::BeginPlay()
 ANaveColmena::ANaveColmena() : ANaveTransporte()
 {
     CreacionMalla();
+    bMovPredeterminado = true;
 };
 
 void ANaveColmena::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-    Mover(DeltaTime);
+    //Mover(DeltaTime);
+    if (bMovPredeterminado) {
+        MovGeneralNaves->MovPredeterminadoNave(DeltaTime);
+	}
+    else {
+		MoverPropio(DeltaTime);
+    }
 };
 
 
@@ -44,6 +51,6 @@ void ANaveColmena::MoverPropio(float DeltaTime)
 
 void ANaveColmena::CreacionMalla()
 {
-    static ConstructorHelpers::FObjectFinder<UStaticMesh>Mesh(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Cone.Shape_Cone'"));
+    static ConstructorHelpers::FObjectFinder<UStaticMesh>Mesh(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Torus.Shape_Torus'"));
     mallaNaveEnemiga->SetStaticMesh(Mesh.Object);
 }

@@ -7,6 +7,7 @@
 #include "NaveTransporte.h"
 #include "NaveCazaComun.h"
 #include "NaveCazaMini.h"
+#include "NaveColmena.h"
 
 AGalaga_USFXGameMode::AGalaga_USFXGameMode()
 {
@@ -38,11 +39,12 @@ void AGalaga_USFXGameMode::BeginPlay()
 
 		ubicacionActualNaveEnemiga.X = ubicacionActualNaveEnemiga.X - 150.0f;
 		ubicacionActualNaveEnemiga.Y = ubicacionInicialNavesEnemigas.Y;
+
 		for (int j = 0; j < 3; j++) {
 
-			ANaveTransporte* NaveEnemigaTransporteActual = World->SpawnActor<ANaveTransporte>(ubicacionActualNaveEnemiga, rotacionNave);
+			ANaveColmena* NaveEnemigaTransporteActual = World->SpawnActor<ANaveColmena>(ubicacionActualNaveEnemiga, rotacionNave);
 			//TANavesEnemigasTransporte.Add(NaveEnemigaTransporteActual);
-			NaveEnemigaTransporteActual->SetNombre("nave enemiga transporte" + FString::FromInt(j));
+			NaveEnemigaTransporteActual->SetNombre("nave enemiga colmena" + FString::FromInt(j));
 			TANavesEnemigasTransporte.Add(NaveEnemigaTransporteActual);
 			TMPosicionesNavesEnemigas.Add(NaveEnemigaTransporteActual, ubicacionActualNaveEnemiga);
 
@@ -63,7 +65,6 @@ void AGalaga_USFXGameMode::BeginPlay()
 	//NaveEnemigaCaza01 = GetWorld()->SpawnActor<ANaveEnemigaCaza>(ANaveEnemigaCaza::StaticClass());
 	//NaveEnemigaCaza02 = GetWorld()->SpawnActor<ANaveEnemigaCaza>(ANaveEnemigaCaza::StaticClass());
 
-	// Displays a red message on the screen for 10 seconds
 	
 	
 	

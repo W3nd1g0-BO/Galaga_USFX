@@ -20,6 +20,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 public:
-	//ANaveCazaMini();
+	ANaveCazaMini();
 	void Mover(float DeltaTime) override;
 };

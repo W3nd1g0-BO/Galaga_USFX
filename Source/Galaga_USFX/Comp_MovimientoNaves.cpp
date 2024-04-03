@@ -2,6 +2,7 @@
 
 
 #include "Comp_MovimientoNaves.h"
+#include "math.h"
 
 // Sets default values for this component's properties
 UComp_MovimientoNaves::UComp_MovimientoNaves()
@@ -28,22 +29,23 @@ void UComp_MovimientoNaves::BeginPlay()
 void UComp_MovimientoNaves::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	//LLamamos a la funcion que mueve la nave
-	MovPredeterminadoNave(DeltaTime)
 }
 
 void UComp_MovimientoNaves::MovPredeterminadoNave(float DeltaTime)
 {
-	float velocidad = 100.0f;
-	float tamañofigura = 500.0f;//El tamaño de la figura que hara la nave
+    float velocidad = 10.0f;
+    float rangoMov = 500.0f; // El tamaño de la figura que hará la nave
 
-	float tiempoMundo = GetWorld()->GetTimeSeconds();
-	FVector nuevaPosicion;
-	nuevaPosicion.X = tamañofigura * FMath::Sin(velocidad * tiempoMundo);
-	nuevaPosicion.Y = tamañofigura * FMath::Sin(2 * velocidad * tiempoMundo) / 2;
-	nuevaPosicion.Z = GetOwner()->GetActorLocation().Z;
+    float tiempoMundo = GetWorld()->GetTimeSeconds();
+    FVector nuevaPosicion;
+    nuevaPosicion.X = rangoMov * FMath::Sin(velocidad * tiempoMundo);
+    nuevaPosicion.Y = rangoMov * FMath::Sin(2 * velocidad * tiempoMundo) / 2;
+    nuevaPosicion.Z = GetOwner()->GetActorLocation().Z;
 
-	//Movemos la nave en la nueva posicion
-	GetOwner()->SetActorLocation(nuevaPosicion);
+    // Movemos la nave en la nueva posición relativa a su posición inicial
+    FVector posicionInicial = GetOwner()->GetActorLocation();
+    nuevaPosicion += posicionInicial;
+
+    // Movemos la nave en la nueva posición
+    GetOwner()->SetActorLocation(nuevaPosicion);
 }

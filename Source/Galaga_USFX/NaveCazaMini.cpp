@@ -9,7 +9,7 @@ void ANaveCazaMini::BeginPlay()
 	Super::BeginPlay();
 };
 
-ANaveCazaMini::ANaveCazaMini()
+ANaveCazaMini::ANaveCazaMini() : ANaveEnemigaCaza()
 {
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>Mesh(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_TriPyramid.Shape_TriPyramid'"));
 	mallaNaveEnemiga->SetStaticMesh(Mesh.Object);

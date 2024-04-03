@@ -6,17 +6,25 @@
 void ANaveCazaComun::BeginPlay()
 {
 	Super::BeginPlay();
+    
 };
 
 ANaveCazaComun::ANaveCazaComun() : ANaveEnemigaCaza()
 {
 	CreacionMalla();
+    bMovPredeterminado = false;
 };
 
 void ANaveCazaComun::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	Mover(DeltaTime);
+
+    if (bMovPredeterminado) {
+        MovGeneralNaves->MovPredeterminadoNave(DeltaTime);
+    }
+    else {
+        Mover(DeltaTime);
+    }
 };
 
 

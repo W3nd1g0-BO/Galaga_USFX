@@ -6,7 +6,7 @@
 #include "NaveEnemiga.h"
 #include "NaveTransporte.h"
 #include "NaveColmena.generated.h"
-#include "Comp_MovimientoNaves.h"
+
 
 /**
  * 
@@ -22,6 +22,6 @@ public:
 public:
 	ANaveColmena();
 	void CreacionMalla();
-	void MoverPropio(float DeltaTime) override;
+	void MoverPropio(float DeltaTime);
 
 };

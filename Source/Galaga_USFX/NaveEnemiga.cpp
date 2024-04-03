@@ -18,7 +18,11 @@ ANaveEnemiga::ANaveEnemiga()
 	mallaNaveEnemiga->SetupAttachment(RootComponent);
 	RootComponent = mallaNaveEnemiga;
 
+	//Creacion del componente de movimiento general de las naves
+	MovGeneralNaves = CreateDefaultSubobject<UComp_MovimientoNaves>(TEXT("Movimiento General Naves"));
+
 	limiteMapa = FBox(FVector(-2000.0f,-2000.0f,0.0f), FVector(2000.0f, 2000.0f,500.0f));
+
 }
 
 // Called when the game starts or when spawned
@@ -34,4 +38,3 @@ void ANaveEnemiga::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
-
