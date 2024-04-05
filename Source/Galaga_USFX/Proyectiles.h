@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "ControlNaveComponent.h"
 #include "Proyectiles.generated.h"
 
 UCLASS()
@@ -14,6 +15,8 @@ class GALAGA_USFX_API AProyectiles : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AProyectiles();
+	UStaticMeshComponent* mallaProyectil;
+	UControlNaveComponent* ControlNaveComponent;
 
 protected:
 	// Called when the game starts or when spawned

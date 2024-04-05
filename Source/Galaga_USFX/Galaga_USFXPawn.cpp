@@ -13,6 +13,9 @@
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundBase.h"
 
+#include "ControlNaveComponent.h"
+#include "Proyectiles.h"
+
 const FName AGalaga_USFXPawn::MoveForwardBinding("MoveForward");
 const FName AGalaga_USFXPawn::MoveRightBinding("MoveRight");
 const FName AGalaga_USFXPawn::FireForwardBinding("FireForward");
@@ -50,6 +53,9 @@ AGalaga_USFXPawn::AGalaga_USFXPawn()
 	GunOffset = FVector(90.f, 0.f, 0.f);
 	FireRate = 0.1f;
 	bCanFire = true;
+
+	ControlSpawnBomba = NewObject<UControlNaveComponent>(this, TEXT("ControlNaveComponent"));
+	ControlSpawnBomba->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 void AGalaga_USFXPawn::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
@@ -61,6 +67,8 @@ void AGalaga_USFXPawn::SetupPlayerInputComponent(class UInputComponent* PlayerIn
 	PlayerInputComponent->BindAxis(MoveRightBinding);
 	PlayerInputComponent->BindAxis(FireForwardBinding);
 	PlayerInputComponent->BindAxis(FireRightBinding);
+
+	PlayerInputComponent->BindAction("FireBomb", IE_Pressed, this, &AGalaga_USFXPawn::OnFire);
 }
 
 void AGalaga_USFXPawn::Tick(float DeltaSeconds)
@@ -137,3 +145,7 @@ void AGalaga_USFXPawn::ShotTimerExpired()
 	bCanFire = true;
 }
 
+void AGalaga_USFXPawn::OnFire() 
+{
+	ControlSpawnBomba->Spawn();
+}

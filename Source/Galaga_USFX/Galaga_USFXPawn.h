@@ -4,7 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "ControlNaveComponent.h"
+
 #include "Galaga_USFXPawn.generated.h"
+
+
 
 UCLASS(Blueprintable)
 class AGalaga_USFXPawn : public APawn
@@ -22,6 +26,9 @@ class AGalaga_USFXPawn : public APawn
 	/** Camera boom positioning the camera above the character */
 	UPROPERTY(Category = Camera, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
+
+	UPROPERTY(VisibleAnywhere)
+	UControlNaveComponent* ControlSpawnBomba;
 
 public:
 	AGalaga_USFXPawn();
@@ -59,6 +66,8 @@ public:
 	static const FName FireForwardBinding;
 	static const FName FireRightBinding;
 
+	void OnFire();
+
 private:
 
 	/* Flag to control firing  */
@@ -74,5 +83,6 @@ public:
 	FORCEINLINE class UCameraComponent* GetCameraComponent() const { return CameraComponent; }
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
-};
 
+
+};

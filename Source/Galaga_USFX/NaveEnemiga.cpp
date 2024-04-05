@@ -6,6 +6,8 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Engine/StaticMesh.h"
 
+
+
 // Sets default values
 ANaveEnemiga::ANaveEnemiga()
 {

@@ -10,6 +10,7 @@ class ANaveEnemiga;
 class ANaveEnemigaCaza;
 class ANaveTransporte;
 class ANaveCazaComun;
+class AProyectiles;
 
 UCLASS(MinimalAPI)
 class AGalaga_USFXGameMode : public AGameModeBase
@@ -22,6 +23,8 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	void DestroyProyectiles();
 
 public:
 	ANaveEnemiga* NaveEnemiga01;
@@ -37,6 +40,7 @@ public:
 
 	UPROPERTY()
 	TMap<ANaveEnemiga*, FVector> TMPosicionesNavesEnemigas;
+	TArray<AProyectiles*> TProyectiles;
 };
 
 

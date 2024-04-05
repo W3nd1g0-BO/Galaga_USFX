@@ -8,6 +8,7 @@
 #include "NaveCazaComun.h"
 #include "NaveCazaMini.h"
 #include "NaveColmena.h"
+#include "Proyectiles.h"
 
 AGalaga_USFXGameMode::AGalaga_USFXGameMode()
 {
@@ -22,6 +23,9 @@ void AGalaga_USFXGameMode::BeginPlay()
 	FVector ubicacionInicialNavesEnemigas = FVector(600.0f, 0.0f, 300.0f);
 	FVector ubicacionActualNaveEnemiga = ubicacionInicialNavesEnemigas;
 	FRotator rotacionNave = FRotator(0.0f, 0.0f, 0.0f);
+	
+	FTransform SpawnLocation;
+	AProyectiles* SpawnedActor = GetWorld()->SpawnActor<AProyectiles>(AProyectiles::StaticClass(), SpawnLocation);
 
 	UWorld* const World = GetWorld();
 	if (World != nullptr)
@@ -40,16 +44,16 @@ void AGalaga_USFXGameMode::BeginPlay()
 		ubicacionActualNaveEnemiga.X = ubicacionActualNaveEnemiga.X - 150.0f;
 		ubicacionActualNaveEnemiga.Y = ubicacionInicialNavesEnemigas.Y;
 
-		for (int j = 0; j < 3; j++) {
+		//for (int j = 0; j < 3; j++) {
 
-			ANaveColmena* NaveEnemigaTransporteActual = World->SpawnActor<ANaveColmena>(ubicacionActualNaveEnemiga, rotacionNave);
-			//TANavesEnemigasTransporte.Add(NaveEnemigaTransporteActual);
-			NaveEnemigaTransporteActual->SetNombre("nave enemiga colmena" + FString::FromInt(j));
-			TANavesEnemigasTransporte.Add(NaveEnemigaTransporteActual);
-			TMPosicionesNavesEnemigas.Add(NaveEnemigaTransporteActual, ubicacionActualNaveEnemiga);
+		//	ANaveColmena* NaveEnemigaTransporteActual = World->SpawnActor<ANaveColmena>(ubicacionActualNaveEnemiga, rotacionNave);
+		//	//TANavesEnemigasTransporte.Add(NaveEnemigaTransporteActual);
+		//	NaveEnemigaTransporteActual->SetNombre("nave enemiga colmena" + FString::FromInt(j));
+		//	TANavesEnemigasTransporte.Add(NaveEnemigaTransporteActual);
+		//	TMPosicionesNavesEnemigas.Add(NaveEnemigaTransporteActual, ubicacionActualNaveEnemiga);
 
-			ubicacionActualNaveEnemiga.Y = ubicacionActualNaveEnemiga.Y + 150.0f;
-		}
+		//	ubicacionActualNaveEnemiga.Y = ubicacionActualNaveEnemiga.Y + 150.0f;
+		//}
 
 			//FTimerHandle FTHVisualizacionPosicionesNavesEnemigas;
 
@@ -57,18 +61,22 @@ void AGalaga_USFXGameMode::BeginPlay()
 
 	}
 
-		
-		
-		//FVector SpawnLocation = FVector(0.0f, 0.0f, 0.0f); // Define la posición de spawn
-	//FRotator SpawnRotation = FRotator(0.0f, 0.0f, 0.0f); // Define la rotación de spawn
+	FTimerHandle Timer;
+	GetWorldTimerManager().SetTimer(Timer, this,
+		&AGalaga_USFXGameMode::DestroyProyectiles, 5.0f,true);
 
-	//NaveEnemigaCaza01 = GetWorld()->SpawnActor<ANaveEnemigaCaza>(ANaveEnemigaCaza::StaticClass());
-	//NaveEnemigaCaza02 = GetWorld()->SpawnActor<ANaveEnemigaCaza>(ANaveEnemigaCaza::StaticClass());
-
-	
-	
-	
-	//FVector ubicacionNaveCaza01 = FVector(-900.f, 500.0f, 250.0f);
-	
 }
 
+void AGalaga_USFXGameMode::DestroyProyectiles()
+{
+	for (AProyectiles* Proyectil : TProyectiles)
+	{
+		if (Proyectil != nullptr)
+		{
+			Proyectil->Destroy();
+		}
+	}
+
+	// Clear the array
+	TProyectiles.Empty();
+}
