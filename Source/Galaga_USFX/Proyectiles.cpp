@@ -16,6 +16,8 @@ AProyectiles::AProyectiles()
 
     static ConstructorHelpers::FObjectFinder<UStaticMesh>Mesh(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Cone.Shape_Cone'"));
     mallaProyectil->SetStaticMesh(Mesh.Object);
+
+    SpawnedActor = this;
 }
 
 // Called when the game starts or when spawned
@@ -28,7 +30,9 @@ void AProyectiles::BeginPlay()
 
     // Adjuntar el componente al actor
     ControlNaveComponent->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
-
+    FTimerHandle Timer;
+    GetWorldTimerManager().SetTimer(Timer, this,
+        &AProyectiles::DestroyProyectiles, 5.0f, true);
     //SetLifeSpan(3);
 }
 
@@ -39,3 +43,13 @@ void AProyectiles::BeginPlay()
 
     };
 
+    void AProyectiles::DestroyProyectiles()
+    {
+        if (SpawnedActor != nullptr)
+        {
+            // Displays a red message on the screen for 10 seconds
+            GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red,
+                TEXT("Actor Destroyed"));
+            SpawnedActor->Destroy();
+        }
+    }

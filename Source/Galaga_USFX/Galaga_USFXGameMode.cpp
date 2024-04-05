@@ -24,8 +24,8 @@ void AGalaga_USFXGameMode::BeginPlay()
 	FVector ubicacionActualNaveEnemiga = ubicacionInicialNavesEnemigas;
 	FRotator rotacionNave = FRotator(0.0f, 0.0f, 0.0f);
 	
-	FTransform SpawnLocation;
-	AProyectiles* SpawnedActor = GetWorld()->SpawnActor<AProyectiles>(AProyectiles::StaticClass(), SpawnLocation);
+	/*FTransform SpawnLocation;
+	AProyectiles* SpawnedActor = GetWorld()->SpawnActor<AProyectiles>(AProyectiles::StaticClass(), SpawnLocation);*/
 
 	UWorld* const World = GetWorld();
 	if (World != nullptr)
@@ -61,22 +61,22 @@ void AGalaga_USFXGameMode::BeginPlay()
 
 	}
 
-	FTimerHandle Timer;
+	/*FTimerHandle Timer;
 	GetWorldTimerManager().SetTimer(Timer, this,
-		&AGalaga_USFXGameMode::DestroyProyectiles, 5.0f,true);
+		&AGalaga_USFXGameMode::DestroyProyectiles, 5.0f,true);*/
 
 }
 
-void AGalaga_USFXGameMode::DestroyProyectiles()
-{
-	for (AProyectiles* Proyectil : TProyectiles)
-	{
-		if (Proyectil != nullptr)
-		{
-			Proyectil->Destroy();
-		}
-	}
-
-	// Clear the array
-	TProyectiles.Empty();
-}
+//void AGalaga_USFXGameMode::DestroyProyectiles()
+//{
+//	for (AProyectiles* Proyectil : TProyectiles)
+//	{
+//		if (Proyectil != nullptr)
+//		{
+//			Proyectil->Destroy();
+//		}
+//	}
+//
+//	// Clear the array
+//	TProyectiles.Empty();
+//}

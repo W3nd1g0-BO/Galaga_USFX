@@ -40,7 +40,7 @@ void UControlNaveComponent::Spawn()
     if (TheWorld != nullptr)
     {
         FTransform ComponentTransform = this->GetComponentTransform();
-        FVector SpawnLocation = ComponentTransform.GetLocation() - FVector(0.0f, 0.0f, 100.0f); // Update the spawn location
+        FVector SpawnLocation = ComponentTransform.GetLocation() - FVector(0.0f, 0.0f, 200.0f); // Update the spawn location
         FTransform SpawnTransform(SpawnLocation);
         TheWorld->SpawnActor(ActorToSpawn, &SpawnTransform);
     }
