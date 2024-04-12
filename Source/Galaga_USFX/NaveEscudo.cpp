@@ -3,3 +3,15 @@
 
 #include "NaveEscudo.h"
 
+
+
+void ANaveEscudo::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
+void ANaveEscudo::Tick(float DeltaTime)
+{
+		Super::Tick(DeltaTime);
+}
+

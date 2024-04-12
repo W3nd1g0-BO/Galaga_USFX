@@ -19,7 +19,7 @@ void ANaveColmena::Tick(float DeltaTime)
     Super::Tick(DeltaTime);
     //Mover(DeltaTime);
     if (bMovPredeterminado) {
-        MovGeneralNaves->MovPredeterminadoNave(DeltaTime);
+        MovGeneralNaves->Mov_FormInfinito(DeltaTime);
 	}
     else {
 		MoverPropio(DeltaTime);

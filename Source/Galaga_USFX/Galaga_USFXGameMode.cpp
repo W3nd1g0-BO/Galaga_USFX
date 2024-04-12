@@ -9,6 +9,7 @@
 #include "NaveCazaMini.h"
 #include "NaveColmena.h"
 #include "Proyectiles.h"
+#include "NaveMedico.h"
 
 AGalaga_USFXGameMode::AGalaga_USFXGameMode()
 {
@@ -20,13 +21,10 @@ void AGalaga_USFXGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FVector ubicacionInicialNavesEnemigas = FVector(600.0f, 0.0f, 300.0f);
+	FVector ubicacionInicialNavesEnemigas = FVector(600.0f, 0.0f, 200.0f);
 	FVector ubicacionActualNaveEnemiga = ubicacionInicialNavesEnemigas;
 	FRotator rotacionNave = FRotator(0.0f, 0.0f, 0.0f);
 	
-	/*FTransform SpawnLocation;
-	AProyectiles* SpawnedActor = GetWorld()->SpawnActor<AProyectiles>(AProyectiles::StaticClass(), SpawnLocation);*/
-
 	UWorld* const World = GetWorld();
 	if (World != nullptr)
 	{
@@ -38,11 +36,20 @@ void AGalaga_USFXGameMode::BeginPlay()
 			TANavesEnemigasCaza.Add(NaveEnemigaCazaActual);
 			TMPosicionesNavesEnemigas.Add(NaveEnemigaCazaActual, ubicacionActualNaveEnemiga);
 
-			ubicacionActualNaveEnemiga.Y = ubicacionActualNaveEnemiga.Y + 150.0f;
+			ubicacionActualNaveEnemiga.Y = ubicacionActualNaveEnemiga.Y + 500.0f;
 		}
 
 		ubicacionActualNaveEnemiga.X = ubicacionActualNaveEnemiga.X - 150.0f;
 		ubicacionActualNaveEnemiga.Y = ubicacionInicialNavesEnemigas.Y;
+
+		//for (int f = 0; f < 6; f++) {
+		//	ANaveMedico* NaveEnemigaCazaActual = World->SpawnActor<ANaveMedico>(ubicacionActualNaveEnemiga, rotacionNave);
+		//	NaveEnemigaCazaActual->SetNombre("nave enemiga caza " + FString::FromInt(f));
+		//	TANavesMedico.Add(NaveEnemigaCazaActual);
+		//	TMPosicionesNavesEnemigas.Add(NaveEnemigaCazaActual, ubicacionActualNaveEnemiga);
+
+		//	ubicacionActualNaveEnemiga.Y = ubicacionActualNaveEnemiga.Y + 200.0f;
+		//}
 
 		//for (int j = 0; j < 3; j++) {
 
@@ -61,22 +68,4 @@ void AGalaga_USFXGameMode::BeginPlay()
 
 	}
 
-	/*FTimerHandle Timer;
-	GetWorldTimerManager().SetTimer(Timer, this,
-		&AGalaga_USFXGameMode::DestroyProyectiles, 5.0f,true);*/
-
 }
-
-//void AGalaga_USFXGameMode::DestroyProyectiles()
-//{
-//	for (AProyectiles* Proyectil : TProyectiles)
-//	{
-//		if (Proyectil != nullptr)
-//		{
-//			Proyectil->Destroy();
-//		}
-//	}
-//
-//	// Clear the array
-//	TProyectiles.Empty();
-//}

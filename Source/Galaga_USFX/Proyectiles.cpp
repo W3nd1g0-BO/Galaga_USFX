@@ -14,42 +14,32 @@ AProyectiles::AProyectiles()
     mallaProyectil->SetupAttachment(RootComponent);
     RootComponent = mallaProyectil;
 
-    static ConstructorHelpers::FObjectFinder<UStaticMesh>Mesh(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Cone.Shape_Cone'"));
+    static ConstructorHelpers::FObjectFinder<UStaticMesh>Mesh(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Sphere.Shape_Sphere'"));
     mallaProyectil->SetStaticMesh(Mesh.Object);
 
-    SpawnedActor = this;
+    //Cambia la escala del proyectil
+    mallaProyectil->SetWorldScale3D(FVector(0.6f, 0.6f, 0.6f));
+
+    //Añade fisicas al proyectil
+    mallaProyectil->SetSimulatePhysics(true);
+    
 }
 
 // Called when the game starts or when spawned
 void AProyectiles::BeginPlay()
 {
     Super::BeginPlay();
-
     // Crear una instancia del componente de control de nave
     ControlNaveComponent = NewObject<UControlNaveComponent>(this);
 
     // Adjuntar el componente al actor
     ControlNaveComponent->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
-    FTimerHandle Timer;
-    GetWorldTimerManager().SetTimer(Timer, this,
-        &AProyectiles::DestroyProyectiles, 5.0f, true);
-    //SetLifeSpan(3);
+
+   SetLifeSpan(3.0f);
+   
 }
 
-// Called every frame
-    void AProyectiles::Tick(float DeltaTime)
-    {
-        Super::Tick(DeltaTime);
-
-    };
-
-    void AProyectiles::DestroyProyectiles()
-    {
-        if (SpawnedActor != nullptr)
-        {
-            // Displays a red message on the screen for 10 seconds
-            GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red,
-                TEXT("Actor Destroyed"));
-            SpawnedActor->Destroy();
-        }
-    }
+void AProyectiles::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+}

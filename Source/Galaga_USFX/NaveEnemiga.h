@@ -21,10 +21,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Projectile, meta = (AllowPrivateAccess = "true"))
 		UStaticMeshComponent* mallaNaveEnemiga;
 		UComp_MovimientoNaves* MovGeneralNaves;
-		
-public:
 
-	UStaticMeshComponent* meshNaveEnemiga;
 
 protected:
 	float velocidad;
@@ -35,7 +32,7 @@ protected:
 	float energia;
 	FVector posicion;
 	FString nombre;
-	//FVector trayectoria;
+	FVector trayectoria;
 	FBox limiteMapa;
 	
 public:

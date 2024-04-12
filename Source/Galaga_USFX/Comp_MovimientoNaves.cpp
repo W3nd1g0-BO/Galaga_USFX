@@ -29,17 +29,18 @@ void UComp_MovimientoNaves::BeginPlay()
 void UComp_MovimientoNaves::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+    Mov_FormInfinito(DeltaTime);
 }
 
-void UComp_MovimientoNaves::MovPredeterminadoNave(float DeltaTime)
+void UComp_MovimientoNaves::Mov_FormInfinito(float DeltaTime)
 {
     float velocidad = 10.0f;
     float rangoMov = 500.0f; // El tamaño de la figura que hará la nave
 
-    float tiempoMundo = GetWorld()->GetTimeSeconds();
+    
     FVector nuevaPosicion;
-    nuevaPosicion.X = rangoMov * FMath::Sin(velocidad * tiempoMundo);
-    nuevaPosicion.Y = rangoMov * FMath::Sin(2 * velocidad * tiempoMundo) / 2;
+    nuevaPosicion.X = rangoMov * FMath::Sin(velocidad * DeltaTime);
+    nuevaPosicion.Y = rangoMov * FMath::Sin(2 * velocidad * DeltaTime) / 2;
     nuevaPosicion.Z = GetOwner()->GetActorLocation().Z;
 
     // Movemos la nave en la nueva posición relativa a su posición inicial

@@ -18,17 +18,12 @@ public:
 	UStaticMeshComponent* mallaProyectil;
 	UControlNaveComponent* ControlNaveComponent;
 
+
+public:
+	virtual void Tick(float DeltaTime) override;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-public:	
-
 private:
-
-	void DestroyProyectiles();
-	
-	virtual void Tick(float DeltaTime) override;
-private:
-	AProyectiles* SpawnedActor;
+	AProyectiles* AProyectil;
 };
