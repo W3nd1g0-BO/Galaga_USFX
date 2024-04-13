@@ -18,12 +18,10 @@ void ANaveMedico::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    if (bMovPredeterminado) {
-        MovGeneralNaves->Mov_FormInfinito(DeltaTime);
-    }
-    else {
+    if (!bMovPredeterminado) 
+    {
         Mover(DeltaTime);
-    }
+    };
 };
 
 

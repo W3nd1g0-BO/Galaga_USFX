@@ -39,8 +39,7 @@ void AGalaga_USFXGameMode::BeginPlay()
 			ubicacionActualNaveEnemiga.Y = ubicacionActualNaveEnemiga.Y + 500.0f;
 		}
 
-		ubicacionActualNaveEnemiga.X = ubicacionActualNaveEnemiga.X - 150.0f;
-		ubicacionActualNaveEnemiga.Y = ubicacionInicialNavesEnemigas.Y;
+
 
 		//for (int f = 0; f < 6; f++) {
 		//	ANaveMedico* NaveEnemigaCazaActual = World->SpawnActor<ANaveMedico>(ubicacionActualNaveEnemiga, rotacionNave);

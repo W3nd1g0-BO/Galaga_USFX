@@ -11,19 +11,14 @@ void ANaveColmena::BeginPlay()
 ANaveColmena::ANaveColmena() : ANaveTransporte()
 {
     CreacionMalla();
-    bMovPredeterminado = true;
+    bMovPredeterminado = false;
+    MovGeneralNaves->SetTipoMovimiento(2);
 };
 
 void ANaveColmena::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-    //Mover(DeltaTime);
-    if (bMovPredeterminado) {
-        MovGeneralNaves->Mov_FormInfinito(DeltaTime);
-	}
-    else {
-		MoverPropio(DeltaTime);
-    }
+    if (!bMovPredeterminado) { Mover(DeltaTime); }
 };
 
 

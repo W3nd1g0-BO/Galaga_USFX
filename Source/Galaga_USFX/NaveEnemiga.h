@@ -22,7 +22,6 @@ public:
 		UStaticMeshComponent* mallaNaveEnemiga;
 		UComp_MovimientoNaves* MovGeneralNaves;
 
-
 protected:
 	float velocidad;
 	float velocidadDisparo;
@@ -33,8 +32,6 @@ protected:
 	FVector posicion;
 	FString nombre;
 	FVector trayectoria;
-	FBox limiteMapa;
-	
 public:
 	//Metodos Acesores                                                                                
 	FORCEINLINE float GetVelocidad() const { return velocidad; }
@@ -58,6 +55,7 @@ public:
 	//FORCEINLINE void SetTrayectoria(FVector _trayectoria) { trayectoria = _trayectoria; }
 
 public: 
+	FBox limiteMapa;
 	bool bMovPredeterminado;
 public:	
 	// Sets default values for this actor's properties
