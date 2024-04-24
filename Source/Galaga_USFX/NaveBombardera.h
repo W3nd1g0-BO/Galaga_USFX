@@ -13,5 +13,10 @@ UCLASS()
 class GALAGA_USFX_API ANaveBombardera : public ANaveArtillera
 {
 	GENERATED_BODY()
-	
+public:
+	ANaveBombardera();
+protected:
+	virtual void BeginPlay() override;
+public:
+	virtual void Tick(float DeltaTime) override;
 };

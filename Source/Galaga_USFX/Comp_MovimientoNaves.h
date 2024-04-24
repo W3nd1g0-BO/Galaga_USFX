@@ -16,22 +16,25 @@ public:
 	// Sets default values for this component's properties
 	UComp_MovimientoNaves();
 public:
-	int tipoMovimiento;
-	float velocidad;
-	FVector trayectoria;
-	FBox limitedeMapa = FBox(FVector(-2000.0f, -2000.0f, 0.0f), FVector(2000.0f, 2000.0f, 500.0f));
+
+	FBox limitedeMapa;
+	
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-
+public:
+	void SetLimitesMapa(FBox limites);
 public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void SetTipoMovimiento(int tipo);
+	virtual void TickComponent(float DeltaTime, ELevelTick
+		TickType, FActorComponentTickFunction* ThisTickFunction)
+		override;
 
-	void Mov_FormZigZag(float DeltaTime);
+public:
+	FString ElegirMovimiento="";
+	//metodo set
 
-	void Mov_FormInfinito(float DeltaTime);
+	virtual void FuncElegirMovimiento(FString _tipoMovimiento)
+		PURE_VIRTUAL(UComp_MovimientoNaves::FuncElegirMovimiento return nullptr;);
 };

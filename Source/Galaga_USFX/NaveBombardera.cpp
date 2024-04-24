@@ -3,3 +3,17 @@
 
 #include "NaveBombardera.h"
 
+ANaveBombardera::ANaveBombardera()
+{
+
+}
+
+void ANaveBombardera::BeginPlay()
+{
+
+}
+
+void ANaveBombardera::Tick(float DeltaTime)
+{
+
+}

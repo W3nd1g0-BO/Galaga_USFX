@@ -6,12 +6,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "Galaga_USFXGameMode.generated.h"
 
+class FabricaNavesAereas;
 class ANaveEnemiga;
-class ANaveEnemigaCaza;
-class ANaveTransporte;
-class ANaveCazaComun;
-class AProyectiles;
-class ANaveMedico;
 
 UCLASS(MinimalAPI)
 class AGalaga_USFXGameMode : public AGameModeBase
@@ -26,21 +22,18 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	ANaveEnemiga* NaveEnemiga01;
-	ANaveEnemigaCaza* NaveEnemigaCaza01;
-	ANaveEnemigaCaza* NaveEnemigaCaza02;
+
+	//ANaveEnemiga* NaveEnemiga01;
+	//ANaveEnemigaCaza* NaveEnemigaCaza01;
+	//ANaveEnemigaCaza* NaveEnemigaCaza02;
 	//ANaveTransporte* NaveTransporte01;
 	//ANaveTransporte* NaveTransporte02;
 public:
-	TArray<ANaveEnemiga*> TANavesEnemigas;
-	TArray<ANaveEnemigaCaza*> TANavesEnemigasCaza;
-	TArray<ANaveTransporte*> TANavesEnemigasTransporte;
-	TArray<ANaveCazaComun*> TANaveCazaComun;
-	TArray<ANaveMedico*> TANavesMedico;
-
-	UPROPERTY()
-	TMap<ANaveEnemiga*, FVector> TMPosicionesNavesEnemigas;
-	TArray<AProyectiles*> TProyectiles;
+	//TArray<ANaveEnemiga*> TANavesEnemigas;
+	//TArray<ANaveEnemigaCaza*> TANavesEnemigasCaza;
+	//TArray<ANaveTransporte*> TANavesEnemigasTransporte;
+	//TArray<ANaveEnemiga*> TANaveCazaComun;
+	//TArray<ANaveMedico*> TANavesMedico;
 };
 
 

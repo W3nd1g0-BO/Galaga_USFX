@@ -7,24 +7,20 @@ ANaveCazaComun::ANaveCazaComun() : ANaveEnemigaCaza()
 {
     PrimaryActorTick.bCanEverTick = true;
 	CreacionMalla();
-    bMovPredeterminado = false;
-    //MovGeneralNaves->SetTipoMovimiento(1);
+    tipoMovimiento->ElegirMovimiento = "aleatorio";
 };
 
 void ANaveCazaComun::BeginPlay()
 {
 	Super::BeginPlay();
 
-    if (!bMovPredeterminado) {
-        MovGeneralNaves->Deactivate();
-    }
 };
 
 void ANaveCazaComun::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-    if (!bMovPredeterminado) { Mover(DeltaTime); }
+    //Mover(DeltaTime);
 };
 
 

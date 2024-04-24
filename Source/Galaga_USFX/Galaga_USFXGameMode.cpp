@@ -2,6 +2,7 @@
 
 #include "Galaga_USFXGameMode.h"
 #include "Galaga_USFXPawn.h"
+#include "FabricaNavesAereas.h"
 #include "NaveEnemiga.h"
 #include "NaveEnemigaCaza.h"
 #include "NaveTransporte.h"
@@ -21,6 +22,8 @@ void AGalaga_USFXGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
+	AFabricNaveEnemiga* FabricaNavesAereas = GetWorld()->SpawnActor<AFabricaNavesAereas>(AFabricaNavesAereas::StaticClass());
+
 	FVector ubicacionInicialNavesEnemigas = FVector(600.0f, 0.0f, 200.0f);
 	FVector ubicacionActualNaveEnemiga = ubicacionInicialNavesEnemigas;
 	FRotator rotacionNave = FRotator(0.0f, 0.0f, 0.0f);
@@ -28,17 +31,22 @@ void AGalaga_USFXGameMode::BeginPlay()
 	UWorld* const World = GetWorld();
 	if (World != nullptr)
 	{
+		for (int i = 0; i < 5; i++)
+		{
+			ANaveEnemiga* naveCreada = FabricaNavesAereas->fabricarNave("cazaComun");
+			
+			if (naveCreada != nullptr)
+			{
+				naveCreada->SetActorLocation(ubicacionActualNaveEnemiga);
+				naveCreada->SetActorRotation(rotacionNave);
+				naveCreada->SetNombre("nave enemiga caza " + FString::FromInt(i));
 
-		for (int i = 0; i < 5; i++) {
-			ANaveCazaComun* NaveEnemigaCazaActual = World->SpawnActor<ANaveCazaComun>(ubicacionActualNaveEnemiga, rotacionNave);
-			//TANavesEnemigasCaza.Add(NaveEnemigaCazaActual);
-			NaveEnemigaCazaActual->SetNombre("nave enemiga caza " + FString::FromInt(i));
-			TANavesEnemigasCaza.Add(NaveEnemigaCazaActual);
-			TMPosicionesNavesEnemigas.Add(NaveEnemigaCazaActual, ubicacionActualNaveEnemiga);
+				//TANaveCazaComun.Add(naveCreada);
+				//TMPosicionesNavesEnemigas.Add(naveCreada, ubicacionActualNaveEnemiga);
 
-			ubicacionActualNaveEnemiga.Y = ubicacionActualNaveEnemiga.Y + 500.0f;
+				ubicacionActualNaveEnemiga.Y = ubicacionActualNaveEnemiga.Y + 200.0f;
+			}
 		}
-
 
 
 		//for (int f = 0; f < 6; f++) {

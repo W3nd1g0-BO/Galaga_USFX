@@ -20,7 +20,7 @@ class GALAGA_USFX_API ANaveEnemiga : public AActor
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Projectile, meta = (AllowPrivateAccess = "true"))
 		UStaticMeshComponent* mallaNaveEnemiga;
-		UComp_MovimientoNaves* MovGeneralNaves;
+		UComp_MovimientoNaves* tipoMovimiento;
 
 protected:
 	float velocidad;

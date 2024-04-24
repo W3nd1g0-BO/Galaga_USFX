@@ -11,18 +11,18 @@ void ANaveColmena::BeginPlay()
 ANaveColmena::ANaveColmena() : ANaveTransporte()
 {
     CreacionMalla();
-    bMovPredeterminado = false;
-    MovGeneralNaves->SetTipoMovimiento(2);
+    //bMovPredeterminado = false;
+    //MovGeneralNaves->SetTipoMovimiento(2);
 };
 
 void ANaveColmena::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-    if (!bMovPredeterminado) { Mover(DeltaTime); }
+    Mover(DeltaTime);
 };
 
 
-void ANaveColmena::MoverPropio(float DeltaTime)
+void ANaveColmena::Mover(float DeltaTime)
 {
     // Obtiene la posición actual del actor
     FVector PosicionActual = GetActorLocation();

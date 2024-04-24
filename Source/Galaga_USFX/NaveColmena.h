@@ -22,6 +22,6 @@ public:
 public:
 	ANaveColmena();
 	void CreacionMalla();
-	void MoverPropio(float DeltaTime);
+	void Mover(float DeltaTime);
 
 };

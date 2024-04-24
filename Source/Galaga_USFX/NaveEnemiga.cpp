@@ -21,7 +21,8 @@ ANaveEnemiga::ANaveEnemiga()
 	RootComponent = mallaNaveEnemiga;
 
 	//Creacion del componente de movimiento general de las naves
-	MovGeneralNaves = CreateDefaultSubobject<UComp_MovimientoNaves>(TEXT("Movimiento General Naves"));
+	tipoMovimiento = CreateDefaultSubobject<UComp_MovimientoNaves>(TEXT("Movimiento de Naves"));
+	tipoMovimiento->ElegirMovimiento="aleatorio";
 
 	limiteMapa = FBox(FVector(-2000.0f,-2000.0f,0.0f), FVector(2000.0f, 2000.0f,500.0f));
 
