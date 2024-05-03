@@ -21,5 +21,4 @@ public:
 	virtual void Tick(float DeltaTime) override;
 public:
 	ANaveCazaMini();
-	void Mover(float DeltaTime) override;
 };

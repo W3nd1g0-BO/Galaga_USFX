@@ -12,6 +12,7 @@ UComp_MovimientoNaves::UComp_MovimientoNaves()
     limitedeMapa = FBox(FVector(-2000.0f, -2000.0f, 0.0f), FVector(2000.0f, 2000.0f, 500.0f));
 	
 	ElegirMovimiento = "aleatorio";
+
 }
 			
 
@@ -22,21 +23,20 @@ void UComp_MovimientoNaves::BeginPlay()
 	// ...
 }
 
+UComp_MovimientoNaves* UComp_MovimientoNaves::FuncElegirMovimiento(FString _tipoMovimiento,float DeltaTime)
+{
+
+	return nullptr;
+}
+
 // Called every frame
 void UComp_MovimientoNaves::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	
-
-	FuncElegirMovimiento(ElegirMovimiento);
+	FuncElegirMovimiento(ElegirMovimiento, DeltaTime);
 }
 
 void UComp_MovimientoNaves::SetLimitesMapa(FBox limites)
 {
 	limitedeMapa = limites;
-}
-
-void UComp_MovimientoNaves::FuncElegirMovimiento(FString _elegirMovimiento)
-{
-	FuncElegirMovimiento( ElegirMovimiento);
 }

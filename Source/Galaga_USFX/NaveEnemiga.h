@@ -6,11 +6,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Comp_MovimientoNaves.h"
-
+#include "EstrategiaMovimiento.h"
 #include "NaveEnemiga.generated.h"
 
 
 class UStaticMeshComponent;
+class UComp_MovimientoNaves;
+class UEstrategiaMovimiento;
 
 UCLASS(abstract)
 class GALAGA_USFX_API ANaveEnemiga : public AActor
@@ -20,7 +22,8 @@ class GALAGA_USFX_API ANaveEnemiga : public AActor
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Projectile, meta = (AllowPrivateAccess = "true"))
 		UStaticMeshComponent* mallaNaveEnemiga;
-		UComp_MovimientoNaves* tipoMovimiento;
+		UComp_MovimientoNaves* compNave;
+		UEstrategiaMovimiento* estrategiaMovimiento;
 
 protected:
 	float velocidad;
@@ -32,6 +35,7 @@ protected:
 	FVector posicion;
 	FString nombre;
 	FVector trayectoria;
+	FString movimiento;
 public:
 	//Metodos Acesores                                                                                
 	FORCEINLINE float GetVelocidad() const { return velocidad; }
@@ -42,6 +46,7 @@ public:
 	FORCEINLINE float GetEnergia() const { return energia; }
 	FORCEINLINE FVector GetPosicion() const { return posicion; }
 	FORCEINLINE FString GetNombre() const { return nombre; }
+	FORCEINLINE	FString GetMovimiento() const { return movimiento; }
 	//FORCEINLINE FVector GetTrayectoria() const { return trayectoria; }
 
 	FORCEINLINE void SetVelocidad(float _velocidad) { velocidad = _velocidad; }
@@ -52,11 +57,13 @@ public:
 	FORCEINLINE void SetEnergia(float _energia)  {energia = _energia ; }
 	FORCEINLINE void SetPosicion(FVector _posicion) { posicion = _posicion; }
 	FORCEINLINE void SetNombre(FString _nombre)  {nombre=_nombre; }
+	FORCEINLINE void SetMovimiento(FString _movimiento) {movimiento = _movimiento; }
 	//FORCEINLINE void SetTrayectoria(FVector _trayectoria) { trayectoria = _trayectoria; }
 
+	
 public: 
 	FBox limiteMapa;
-	bool bMovPredeterminado;
+
 public:	
 	// Sets default values for this actor's properties
 	ANaveEnemiga();
@@ -71,7 +78,7 @@ public:
 
 protected:
 
-    void Mover(float DeltaTime) PURE_VIRTUAL(ANaveEnemiga::Mover, ); //Funcion virtual pura para mover la nave enemiga
+    //void Mover(float DeltaTime) PURE_VIRTUAL(ANaveEnemiga::Mover, ); //Funcion virtual pura para mover la nave enemiga
 
 	//void daño() PURE_VIRTUAL(ANaveEnemiga::daño);	//contabiliza el daño recibido
 

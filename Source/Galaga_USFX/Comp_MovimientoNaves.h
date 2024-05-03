@@ -18,23 +18,19 @@ public:
 public:
 
 	FBox limitedeMapa;
-	
+	FString ElegirMovimiento;
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 public:
 	void SetLimitesMapa(FBox limites);
+	void SetElegirMovimiento(FString _elegirMovimiento) { ElegirMovimiento = _elegirMovimiento; };
 public:	
 
 	virtual void TickComponent(float DeltaTime, ELevelTick
 		TickType, FActorComponentTickFunction* ThisTickFunction)
 		override;
 
-public:
-	FString ElegirMovimiento="";
-	//metodo set
-
-	virtual void FuncElegirMovimiento(FString _tipoMovimiento)
-		PURE_VIRTUAL(UComp_MovimientoNaves::FuncElegirMovimiento return nullptr;);
+	virtual UComp_MovimientoNaves* FuncElegirMovimiento(FString _tipoMovimiento,float DeltaTime);
 };

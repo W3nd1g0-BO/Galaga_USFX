@@ -2,6 +2,8 @@
 
 
 #include "NaveEnemiga.h"
+#include "Comp_MovimientoNaves.h"
+#include "EstrategiaMovimiento.h"
 #include "Components/StaticMeshComponent.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Engine/StaticMesh.h"
@@ -20,12 +22,12 @@ ANaveEnemiga::ANaveEnemiga()
 	mallaNaveEnemiga->SetupAttachment(RootComponent);
 	RootComponent = mallaNaveEnemiga;
 
-	//Creacion del componente de movimiento general de las naves
-	tipoMovimiento = CreateDefaultSubobject<UComp_MovimientoNaves>(TEXT("Movimiento de Naves"));
-	tipoMovimiento->ElegirMovimiento="aleatorio";
+	//Creacion del componente de movimiento de las naves
+	compNave = CreateDefaultSubobject<UComp_MovimientoNaves>(TEXT("Componentes de las de Naves"));
+	estrategiaMovimiento = CreateDefaultSubobject<UEstrategiaMovimiento>(TEXT("Estrategia de Movimiento"));
+	compNave->SetElegirMovimiento(movimiento);
 
 	limiteMapa = FBox(FVector(-2000.0f,-2000.0f,0.0f), FVector(2000.0f, 2000.0f,500.0f));
-
 }
 
 // Called when the game starts or when spawned
@@ -39,5 +41,4 @@ void ANaveEnemiga::BeginPlay()
 void ANaveEnemiga::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }

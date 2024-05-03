@@ -22,5 +22,5 @@ public:
 public:
 	ANaveCazaComun();
 	void CreacionMalla();
-	void Mover(float DeltaTime) override;
+	//void Mover(float DeltaTime) override;
 };

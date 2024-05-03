@@ -17,11 +17,6 @@ void ANaveMedico::BeginPlay()
 void ANaveMedico::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-
-    if (!bMovPredeterminado) 
-    {
-        Mover(DeltaTime);
-    };
 };
 
 

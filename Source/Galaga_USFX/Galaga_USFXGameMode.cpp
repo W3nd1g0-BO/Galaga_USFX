@@ -27,7 +27,6 @@ void AGalaga_USFXGameMode::BeginPlay()
 	FVector ubicacionInicialNavesEnemigas = FVector(600.0f, 0.0f, 200.0f);
 	FVector ubicacionActualNaveEnemiga = ubicacionInicialNavesEnemigas;
 	FRotator rotacionNave = FRotator(0.0f, 0.0f, 0.0f);
-	
 	UWorld* const World = GetWorld();
 	if (World != nullptr)
 	{
@@ -40,6 +39,7 @@ void AGalaga_USFXGameMode::BeginPlay()
 				naveCreada->SetActorLocation(ubicacionActualNaveEnemiga);
 				naveCreada->SetActorRotation(rotacionNave);
 				naveCreada->SetNombre("nave enemiga caza " + FString::FromInt(i));
+				naveCreada->SetMovimiento("aleatorio");
 
 				//TANaveCazaComun.Add(naveCreada);
 				//TMPosicionesNavesEnemigas.Add(naveCreada, ubicacionActualNaveEnemiga);
