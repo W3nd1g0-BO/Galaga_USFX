@@ -42,8 +42,6 @@ UComp_MovimientoNaves* UEstrategiaMovimiento::FuncElegirMovimiento(FString _tipo
     else if (_tipoMovimiento.Equals("lineal"))
     {
 		Mov_lineal(DeltaTime);
-        //log cuando el codigo llega aqui
-        UE_LOG(LogTemp, Warning, TEXT("Movimiento Lineal"));
 	}
         return nullptr;
 }

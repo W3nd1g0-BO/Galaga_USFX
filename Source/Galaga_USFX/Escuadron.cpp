@@ -45,5 +45,18 @@ void AEscuadron::setNivelEscuadron(int _nivelEscuadra)
 	NivelEscuadra = _nivelEscuadra;
 }
 
+void AEscuadron::DatosEscuadron()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow,
+		FString::Printf(TEXT("Forma Escuadra: %s"), *FormaEscuadra));
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow,
+		FString::Printf(TEXT("Vel de escuadra: %f"), VelEscuadra));
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow,
+		FString::Printf(TEXT("Cantidad inicial de enemigos: %d"), CantEnemigos));
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow,
+		FString::Printf(TEXT("El nivel de la escuadra: %d"), NivelEscuadra));
+}
+
+
 
 

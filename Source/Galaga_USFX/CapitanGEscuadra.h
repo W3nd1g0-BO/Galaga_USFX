@@ -4,17 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "BuilderEscuadronesDeAtaque.h"
 #include "CapitanGEscuadra.generated.h"
 
 UCLASS()
 class GALAGA_USFX_API ACapitanGEscuadra : public AActor
 {
 	GENERATED_BODY()
-	
+
 public:	
 	// Sets default values for this actor's properties
 	ACapitanGEscuadra();
-
+private:
+	IBuilderEscuadronesDeAtaque* BuilderEscuadrones;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -23,4 +25,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void FormarEscuadron();
+	void SetBuilderEscuadrones(AActor* builder);
+	class AEscuadron* GetEscuadron();
 };

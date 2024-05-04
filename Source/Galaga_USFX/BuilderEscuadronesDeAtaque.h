@@ -26,5 +26,5 @@ public:
 	virtual void buildVelocidadEscuadron() = 0;
 	virtual void buildCantEnemigos() = 0;
 	virtual void buildNivelEscuadron() = 0;
-	virtual class Escuadron* getEscuadron() = 0;
+	virtual class AEscuadron* getEscuadron() = 0;
 };

@@ -6,8 +6,9 @@
 #include "GameFramework/GameModeBase.h"
 #include "Galaga_USFXGameMode.generated.h"
 
-class FabricaNavesAereas;
-class ANaveEnemiga;
+/**
+ * 
+ */
 
 UCLASS(MinimalAPI)
 class AGalaga_USFXGameMode : public AGameModeBase
@@ -20,20 +21,13 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-public:
-
-	//ANaveEnemiga* NaveEnemiga01;
-	//ANaveEnemigaCaza* NaveEnemigaCaza01;
-	//ANaveEnemigaCaza* NaveEnemigaCaza02;
-	//ANaveTransporte* NaveTransporte01;
-	//ANaveTransporte* NaveTransporte02;
-public:
-	//TArray<ANaveEnemiga*> TANavesEnemigas;
-	//TArray<ANaveEnemigaCaza*> TANavesEnemigasCaza;
-	//TArray<ANaveTransporte*> TANavesEnemigasTransporte;
-	//TArray<ANaveEnemiga*> TANaveCazaComun;
-	//TArray<ANaveMedico*> TANavesMedico;
+private:
+	//The Builder Actor
+	UPROPERTY(VisibleAnywhere, Category = "Main")
+	class AEscuadronDeAtaqueEA1* EA1;
+	//The Engineer Actor
+	UPROPERTY(VisibleAnywhere, Category = "Main")
+	class ACapitanGEscuadra* Capitan;
 };
 
 

@@ -32,5 +32,5 @@ public:
 	virtual void buildVelocidadEscuadron() override;
 	virtual void buildCantEnemigos() override;
 	virtual void buildNivelEscuadron() override;
-	virtual class Escuadron* getEscuadron() override;
+	virtual class AEscuadron* getEscuadron() override;
 };

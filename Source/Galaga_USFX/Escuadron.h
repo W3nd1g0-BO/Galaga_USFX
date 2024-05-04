@@ -33,4 +33,5 @@ public:
 	void setVelocidadEscuadron(float _velEscuadra);
 	void setCantEnemigos(int _cantEnemigos);
 	void setNivelEscuadron(int _nivelEscuadra);
+	void DatosEscuadron();
 };

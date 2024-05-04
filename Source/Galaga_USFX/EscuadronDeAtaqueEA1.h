@@ -9,6 +9,8 @@
 #include "BuilderEscuadronesDeAtaque.h"
 #include "EscuadronDeAtaqueEA1.generated.h"
 
+class AFabricaNavesAereas;
+
 UCLASS()
 class GALAGA_USFX_API AEscuadronDeAtaqueEA1 : public AActor,public IBuilderEscuadronesDeAtaque
 {
@@ -18,7 +20,7 @@ public:
 	// Sets default values for this actor's properties
 	AEscuadronDeAtaqueEA1();
 private:
-	//The Lodging Actor
+
 	UPROPERTY(VisibleAnywhere, Category = "Escuadron EA1")
 	class AEscuadron* escuadron;
 
@@ -29,10 +31,15 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	ANaveEnemiga* NaveEnemiga;
+	AFabricaNavesAereas* FabricaNavesAereas;
+	TArray<ANaveEnemiga*> TNavesEnemigas;
+
 public:
 	virtual void buildFormacionEscuadron() override;
 	virtual void buildVelocidadEscuadron() override;
 	virtual void buildCantEnemigos() override;
 	virtual void buildNivelEscuadron() override;
-	virtual class Escuadron* getEscuadron() override;
+	virtual class AEscuadron* getEscuadron() override;
 };

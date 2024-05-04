@@ -43,7 +43,7 @@ void AEscuadronDeAtaqueEA2::buildNivelEscuadron()
 
 }
 
-Escuadron* AEscuadronDeAtaqueEA2::getEscuadron()
+AEscuadron* AEscuadronDeAtaqueEA2::getEscuadron()
 {
-	return nullptr;
+	return escuadron;
 }

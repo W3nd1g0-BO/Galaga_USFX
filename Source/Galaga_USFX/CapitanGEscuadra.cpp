@@ -2,6 +2,7 @@
 
 
 #include "CapitanGEscuadra.h"
+#include "Escuadron.h"
 
 // Sets default values
 ACapitanGEscuadra::ACapitanGEscuadra()
@@ -24,4 +25,36 @@ void ACapitanGEscuadra::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
+
+void ACapitanGEscuadra::SetBuilderEscuadrones(AActor* builder)
+{
+	BuilderEscuadrones = Cast<IBuilderEscuadronesDeAtaque>(builder);
+	if (!BuilderEscuadrones)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Red,
+			TEXT("Invalid Cast! See Output log for more details"));
+		UE_LOG(LogTemp, Error, TEXT("SetLodgingBuilder(): The Actor is not a LodgingBuilder! Are you sure that the Actor implements that interface ? "));
+	}
+}
+
+AEscuadron* ACapitanGEscuadra::GetEscuadron()
+{
+	if (!BuilderEscuadrones)
+	{
+		UE_LOG(LogTemp, Error, TEXT("GetLodging(): Return nullptr"));
+		return nullptr;
+	}
+	
+	return BuilderEscuadrones->getEscuadron();
+}
+
+void ACapitanGEscuadra::FormarEscuadron()
+{
+	if (!BuilderEscuadrones) { UE_LOG(LogTemp, Error, TEXT("ConstructLodging(): LodgingBuilder is NULL, make sure it's initialized.")); return; }
+	BuilderEscuadrones->buildCantEnemigos();
+	BuilderEscuadrones->buildFormacionEscuadron();
+	BuilderEscuadrones->buildNivelEscuadron();
+	BuilderEscuadrones->buildVelocidadEscuadron();
+}
+
 
