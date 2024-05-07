@@ -5,11 +5,11 @@
 #include "CoreMinimal.h"
 
 #include "GameFramework/Actor.h"
-#include "NaveEnemiga.h"
 #include "BuilderEscuadronesDeAtaque.h"
 #include "EscuadronDeAtaqueEA1.generated.h"
 
 class AFabricaNavesAereas;
+class ANaveEnemiga;
 
 UCLASS()
 class GALAGA_USFX_API AEscuadronDeAtaqueEA1 : public AActor,public IBuilderEscuadronesDeAtaque

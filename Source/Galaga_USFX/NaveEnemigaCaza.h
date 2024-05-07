@@ -22,8 +22,4 @@ public:
 	ANaveEnemigaCaza();
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-public:
-	//virtual void Daño();
-	//virtual void Destruir();
-	//virtual void Atacar();
 };

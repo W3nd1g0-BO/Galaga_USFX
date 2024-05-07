@@ -3,9 +3,9 @@
 
 #include "EscuadronDeAtaqueEA1.h"
 #include "Escuadron.h"
+#include "NaveEnemiga.h"
 #include "FabricNaveEnemiga.h"
 #include "FabricaNavesAereas.h"
-#include "NaveEnemiga.h"
 
 // Sets default values
 AEscuadronDeAtaqueEA1::AEscuadronDeAtaqueEA1()
@@ -45,7 +45,7 @@ void AEscuadronDeAtaqueEA1::buildFormacionEscuadron()
 		UE_LOG(LogTemp, Error, TEXT("buildFormacionEscuadron(): escuadron is NULL, make sure it's initialized.")); return; 
 	}
 	escuadron->setFormacionEscuadron("Forma Cuadrada");
-	FVector posicionInicial = FVector(0.0f, 0.0f, 300.0f);
+	FVector posicionInicial = FVector(0.0f,0.0f, 300.0f);
 
 	if (TNavesEnemigas.Num() != 0)
 	{
@@ -84,7 +84,7 @@ void AEscuadronDeAtaqueEA1::buildCantEnemigos()
 
 	escuadron ->setCantEnemigos(20);
 
-	for (int i = 0; i <= 20; i++)
+	for (int i = 0; i <= 34; i++)
 	{
 		NaveEnemiga = FabricaNavesAereas->fabricarNave("cazaComun");
 		NaveEnemiga->SetNombre("Caza Comun" + FString::FromInt(i));

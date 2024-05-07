@@ -25,7 +25,7 @@ protected:
 	virtual void BeginPlay() override;
 public:
 	void SetLimitesMapa(FBox limites);
-	void SetElegirMovimiento(FString _elegirMovimiento) { ElegirMovimiento = _elegirMovimiento; };
+	
 public:	
 
 	virtual void TickComponent(float DeltaTime, ELevelTick

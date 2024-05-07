@@ -30,10 +30,14 @@ public:
 
 	void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction);
 
+	void SetElegirMovimiento(FString _elegirMovimiento) { ElegirMovimiento = _elegirMovimiento; };
+
 	virtual UComp_MovimientoNaves* FuncElegirMovimiento(FString _tipoMovimiento, float DeltaTime) override;
+	void ComprobarLimites(FVector& NuevaPosicion);
 
 	void Mov_lineal(float DeltaTime);
 	void Mov_Aleatoriamente(float DeltaTime);
 	void Mov_FormInfinito(float DeltaTime);
 	void Mov_Horizontal(float DeltaTime);
+	void Mov_Estacionario(float DeltaTime);
 };

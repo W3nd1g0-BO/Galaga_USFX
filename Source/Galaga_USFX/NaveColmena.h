@@ -22,6 +22,4 @@ public:
 public:
 	ANaveColmena();
 	void CreacionMalla();
-	void Mover(float DeltaTime);
-
 };

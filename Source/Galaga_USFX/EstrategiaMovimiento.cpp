@@ -17,6 +17,7 @@ void UEstrategiaMovimiento::BeginPlay()
 void UEstrategiaMovimiento::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+    UEstrategiaMovimiento::FuncElegirMovimiento(ElegirMovimiento, DeltaTime);
 };
 
 UComp_MovimientoNaves* UEstrategiaMovimiento::FuncElegirMovimiento(FString _tipoMovimiento,float DeltaTime)
@@ -25,6 +26,7 @@ UComp_MovimientoNaves* UEstrategiaMovimiento::FuncElegirMovimiento(FString _tipo
     UE_LOG(LogTemp, Warning, TEXT("Se ha seleccionado un tipo de movimiento: %s"), *_tipoMovimiento);
     if (_tipoMovimiento.IsEmpty())
     {
+        UE_LOG(LogTemp, Error, TEXT("No se ha seleccionado un tipo de movimiento"));
         return nullptr;
     }
     if (_tipoMovimiento.Equals("infinito"))
@@ -43,7 +45,31 @@ UComp_MovimientoNaves* UEstrategiaMovimiento::FuncElegirMovimiento(FString _tipo
     {
 		Mov_lineal(DeltaTime);
 	}
+    else if (_tipoMovimiento.Equals("estacionario"))
+    {
+        Mov_Estacionario(DeltaTime);
+    }
         return nullptr;
+}
+
+void UEstrategiaMovimiento::ComprobarLimites(FVector& _nuevaPosicion)
+{
+    NuevaPosicion = _nuevaPosicion;
+    if (NuevaPosicion.X >= limitedeMapa.Max.X || NuevaPosicion.Y >= limitedeMapa.Max.Y)
+    {
+        if (NuevaPosicion.X >= limitedeMapa.Max.X) { NuevaPosicion.X = limitedeMapa.Min.X; };
+        if (NuevaPosicion.Y >= limitedeMapa.Max.Y) { NuevaPosicion.Y = limitedeMapa.Min.Y; };
+    }
+    else if (NuevaPosicion.X <= limitedeMapa.Min.X || NuevaPosicion.Y <= limitedeMapa.Min.Y)
+    {
+        if (NuevaPosicion.X <= limitedeMapa.Min.X) { NuevaPosicion.X = limitedeMapa.Max.X; };
+        if (NuevaPosicion.Y <= limitedeMapa.Min.Y) { NuevaPosicion.Y = limitedeMapa.Max.Y; };
+    };
+}
+
+void UEstrategiaMovimiento::Mov_Estacionario(float DeltaTime)
+{
+    
 }
 
 void UEstrategiaMovimiento::Mov_lineal(float DeltaTime)
@@ -57,20 +83,11 @@ void UEstrategiaMovimiento::Mov_lineal(float DeltaTime)
     // Calcula la nueva posición del actor
      NuevaPosicion = PosicionActual + velocidad * DeltaTime;
 
-
-    if (NuevaPosicion.X >= limitedeMapa.Max.X || NuevaPosicion.Y >= limitedeMapa.Max.Y)
-    {
-        if (NuevaPosicion.X >= limitedeMapa.Max.X) { NuevaPosicion.X = limitedeMapa.Min.X; };
-        if (NuevaPosicion.Y >= limitedeMapa.Max.Y) { NuevaPosicion.Y = limitedeMapa.Min.Y; };
-    }
-    else if (NuevaPosicion.X <= limitedeMapa.Min.X || NuevaPosicion.Y <= limitedeMapa.Min.Y)
-    {
-        if (NuevaPosicion.X <= limitedeMapa.Min.X) { NuevaPosicion.X = limitedeMapa.Max.X; };
-        if (NuevaPosicion.Y <= limitedeMapa.Min.Y) { NuevaPosicion.Y = limitedeMapa.Max.Y; };
-    };
+     ComprobarLimites(NuevaPosicion);
 
     nave->SetActorLocation(NuevaPosicion);
 };
+
 
 
 void UEstrategiaMovimiento::Mov_Aleatoriamente(float DeltaTime)

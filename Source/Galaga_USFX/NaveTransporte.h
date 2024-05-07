@@ -18,9 +18,5 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 public:
 	ANaveTransporte();
-public:
-	virtual void Mover(float DeltaTime);
-	//virtual void Destruir();
-	//virtual void Daño();
-	//virtual void Atacar();
+
 };

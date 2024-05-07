@@ -25,9 +25,7 @@ ANaveEnemiga::ANaveEnemiga()
 	//Creacion del componente de movimiento de las naves
 	compNave = CreateDefaultSubobject<UComp_MovimientoNaves>(TEXT("Componentes de las de Naves"));
 	estrategiaMovimiento = CreateDefaultSubobject<UEstrategiaMovimiento>(TEXT("Estrategia de Movimiento"));
-	compNave->SetElegirMovimiento(movimiento);
-
-	limiteMapa = FBox(FVector(-2000.0f,-2000.0f,0.0f), FVector(2000.0f, 2000.0f,500.0f));
+	
 }
 
 // Called when the game starts or when spawned
@@ -41,4 +39,5 @@ void ANaveEnemiga::BeginPlay()
 void ANaveEnemiga::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	estrategiaMovimiento->SetElegirMovimiento(movimiento);
 }

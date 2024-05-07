@@ -34,7 +34,6 @@ protected:
 	float energia;
 	FVector posicion;
 	FString nombre;
-	FVector trayectoria;
 	FString movimiento;
 public:
 	//Metodos Acesores                                                                                
@@ -60,10 +59,6 @@ public:
 	FORCEINLINE void SetMovimiento(FString _movimiento) {movimiento = _movimiento; }
 	//FORCEINLINE void SetTrayectoria(FVector _trayectoria) { trayectoria = _trayectoria; }
 
-	
-public: 
-	FBox limiteMapa;
-
 public:	
 	// Sets default values for this actor's properties
 	ANaveEnemiga();
@@ -75,14 +70,4 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	
-
-protected:
-
-    //void Mover(float DeltaTime) PURE_VIRTUAL(ANaveEnemiga::Mover, ); //Funcion virtual pura para mover la nave enemiga
-
-	//void daño() PURE_VIRTUAL(ANaveEnemiga::daño);	//contabiliza el daño recibido
-
-	//void destruir() PURE_VIRTUAL(ANaveEnemiga::destruir); //destruir si el daño es critico
-
-	//void atacar() PURE_VIRTUAL(ANaveEnemiga::atacar);	//atacar al jugador
 };

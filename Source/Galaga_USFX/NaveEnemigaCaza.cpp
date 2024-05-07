@@ -3,8 +3,6 @@
 #include "NaveEnemigaCaza.h"
 
 
-
-
 // Called when the game starts or when spawned
 void ANaveEnemigaCaza::BeginPlay()
 {
