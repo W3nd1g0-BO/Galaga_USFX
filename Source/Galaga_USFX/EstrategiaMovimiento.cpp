@@ -74,13 +74,10 @@ void UEstrategiaMovimiento::Mov_Estacionario(float DeltaTime)
 
 void UEstrategiaMovimiento::Mov_lineal(float DeltaTime)
 {
-    // Obtiene la posición actual del actor
     PosicionActual = nave->GetActorLocation();
 
-    // Define la velocidad de movimiento en las direcciones X e Y
      velocidad=FVector(100.0f,100.0f,0.0f);
 
-    // Calcula la nueva posición del actor
      NuevaPosicion = PosicionActual + velocidad * DeltaTime;
 
      ComprobarLimites(NuevaPosicion);
@@ -100,6 +97,8 @@ void UEstrategiaMovimiento::Mov_Aleatoriamente(float DeltaTime)
 
     NuevaPosicion = FVector(PosicionActual.X + NuevaX, PosicionActual.Y + NuevaY, PosicionActual.Z);
 
+    ComprobarLimites(NuevaPosicion);
+
     // Establece la nueva posición del actor
     nave->SetActorLocation(NuevaPosicion);
 }
@@ -114,10 +113,12 @@ void UEstrategiaMovimiento::Mov_FormInfinito(float DeltaTime)
     FVector nuevaPosicion;
     nuevaPosicion.X = rangoMov * FMath::Sin(velocidad1 * DeltaTime);
     nuevaPosicion.Y = rangoMov * FMath::Sin(2 * velocidad1 * DeltaTime) / 2;
-    nuevaPosicion.Z = GetOwner()->GetActorLocation().Z;
+    //nuevaPosicion.Z = PosicionActual.Z;
 
 
     PosicionActual += nuevaPosicion;
+
+    ComprobarLimites(NuevaPosicion);
 
     // Movemos la nave en la nueva posición
     GetOwner()->SetActorLocation(nuevaPosicion);
@@ -168,6 +169,7 @@ void UEstrategiaMovimiento::Mov_Horizontal(float DeltaTime)
     if (nuevaPosicion.X >= posicionInicial.X + rangoMov) { velocidad1 = -10.0f; }
     else if (nuevaPosicion.X <= posicionInicial.X - rangoMov) { velocidad1 = 10.0f; }
 
+    ComprobarLimites(NuevaPosicion);
 
     // Movemos la nave en la nueva posición
     GetOwner()->SetActorLocation(nuevaPosicion);

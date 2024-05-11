@@ -53,13 +53,14 @@ void AEscuadronDeAtaqueEA1::buildFormacionEscuadron()
 		for (int i = 0; i < TNavesEnemigas.Num(); i++)
 		{
 			TNavesEnemigas[i]->SetActorLocation(posicionInicial);
-			TNavesEnemigas[i]->SetMovimiento("lineal");
+			//TNavesEnemigas[i]->SetMovimiento("lineal");
 			posicionInicial.X += 200.0f;
 			if (posicionInicial.X >= 1000.0f) 
 			{
 				posicionInicial.X = 0.0f;
 				posicionInicial.Y += 200.0f;
 			};
+
 		}
 	}
 	else {
@@ -84,12 +85,23 @@ void AEscuadronDeAtaqueEA1::buildCantEnemigos()
 
 	escuadron ->setCantEnemigos(20);
 
-	for (int i = 0; i <= 34; i++)
+	for (int i = 0; i <= 20; i++)
 	{
-		NaveEnemiga = FabricaNavesAereas->fabricarNave("cazaComun");
-		NaveEnemiga->SetNombre("Caza Comun" + FString::FromInt(i));
-		TNavesEnemigas.Add(NaveEnemiga);
+		if (i % 2 == 0) 
+		{
+			NaveEnemiga = FabricaNavesAereas->fabricarNave("cazaComun");
+			NaveEnemiga->SetNombre("Caza Comun" + FString::FromInt(i));
+			TNavesEnemigas.Add(NaveEnemiga);
+			TNavesEnemigas[i]->SetMovimiento("lineal");
+		}
+		else {
+			NaveEnemiga = FabricaNavesAereas->fabricarNave("colmena");
+			NaveEnemiga->SetNombre("Colmena" + FString::FromInt(i));
+			TNavesEnemigas.Add(NaveEnemiga);
+			TNavesEnemigas[i]->SetMovimiento("aleatorio");
+		}
 	}
+
 }
 
 void AEscuadronDeAtaqueEA1::buildNivelEscuadron()

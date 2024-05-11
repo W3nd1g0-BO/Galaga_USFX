@@ -18,11 +18,11 @@ void ANaveCazaComun::BeginPlay()
 void ANaveCazaComun::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (estrategiaMovimiento->ElegirMovimiento != "" || nullptr)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("NaveCazaComun ha llamado a la funcion de movimiento"));
-		estrategiaMovimiento->FuncElegirMovimiento(movimiento, DeltaTime);		
-	}
+	//if (estrategiaMovimiento->ElegirMovimiento != "" || nullptr)
+	//{
+	//	UE_LOG(LogTemp, Warning, TEXT("NaveCazaComun ha llamado a la funcion de movimiento"));
+	//	estrategiaMovimiento->FuncElegirMovimiento(movimiento, DeltaTime);		
+	//}
 };
 
 void ANaveCazaComun::CreacionMalla() 

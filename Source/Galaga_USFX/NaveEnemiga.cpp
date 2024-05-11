@@ -26,6 +26,7 @@ ANaveEnemiga::ANaveEnemiga()
 	compNave = CreateDefaultSubobject<UComp_MovimientoNaves>(TEXT("Componentes de las de Naves"));
 	estrategiaMovimiento = CreateDefaultSubobject<UEstrategiaMovimiento>(TEXT("Estrategia de Movimiento"));
 	
+	//estrategiaMovimiento->SetElegirMovimiento("aleatorio");
 }
 
 // Called when the game starts or when spawned
