@@ -28,4 +28,6 @@ public:
 	void FormarEscuadron();
 	void SetBuilderEscuadrones(AActor* builder);
 	class AEscuadron* GetEscuadron();
+
+	void ConstruirEscuadron(AActor* builder);
 };

@@ -20,12 +20,9 @@ void AEscuadronDeAtaqueEA1::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	//Spawn the Lodging Actors
-	escuadron=GetWorld()->SpawnActor<AEscuadron>
-		(AEscuadron::StaticClass());
+	escuadron=GetWorld()->SpawnActor<AEscuadron>(AEscuadron::StaticClass());
 	//Attach it to the Builder (this)
-	escuadron->AttachToActor(this,
-		FAttachmentTransformRules::KeepRelativeTransform);
+	escuadron->AttachToActor(this,FAttachmentTransformRules::KeepRelativeTransform);
 
 	FabricaNavesAereas = GetWorld()->SpawnActor<AFabricaNavesAereas>(AFabricaNavesAereas::StaticClass());
 
@@ -45,21 +42,22 @@ void AEscuadronDeAtaqueEA1::buildFormacionEscuadron()
 		UE_LOG(LogTemp, Error, TEXT("buildFormacionEscuadron(): escuadron is NULL, make sure it's initialized.")); return; 
 	}
 	escuadron->setFormacionEscuadron("Forma Cuadrada");
-	FVector posicionInicial = FVector(0.0f,0.0f, 300.0f);
+
+	FVector posicionInicial = FVector(200.0f,-500.0f, 300.0f);
 
 	if (TNavesEnemigas.Num() != 0)
 	{
-		//recorrer el arreglo de naves enemigas y asignarles una posicion en la formacion
+		//recorrer el arreglo de naves enemigas y asignarles una posicion en la formacion cuadrada
 		for (int i = 0; i < TNavesEnemigas.Num(); i++)
 		{
 			TNavesEnemigas[i]->SetActorLocation(posicionInicial);
-			//TNavesEnemigas[i]->SetMovimiento("lineal");
-			posicionInicial.X += 200.0f;
-			if (posicionInicial.X >= 1000.0f) 
+
+			posicionInicial.Y += 300.0f;
+			if (i % 4 == 0)
 			{
-				posicionInicial.X = 0.0f;
-				posicionInicial.Y += 200.0f;
-			};
+				posicionInicial.X += 300.0f;
+				posicionInicial.Y = -500.0f;
+			}
 
 		}
 	}
@@ -74,6 +72,13 @@ void AEscuadronDeAtaqueEA1::buildVelocidadEscuadron()
 	{
 		UE_LOG(LogTemp, Error, TEXT("buildFormacionEscuadron(): escuadron is NULL, make sure it's initialized.")); return;
 	}
+
+	escuadron->setVelocidadEscuadron(100.0f);
+
+	for (int i = 0; i < TNavesEnemigas.Num(); i++)
+	{
+		TNavesEnemigas[i]->SetVelocidad(300.0f);
+	}
 }
 
 void AEscuadronDeAtaqueEA1::buildCantEnemigos()
@@ -85,20 +90,20 @@ void AEscuadronDeAtaqueEA1::buildCantEnemigos()
 
 	escuadron ->setCantEnemigos(20);
 
-	for (int i = 0; i <= 20; i++)
+	for (int i = 0; i <= 19; i++)
 	{
 		if (i % 2 == 0) 
 		{
 			NaveEnemiga = FabricaNavesAereas->fabricarNave("cazaComun");
 			NaveEnemiga->SetNombre("Caza Comun" + FString::FromInt(i));
 			TNavesEnemigas.Add(NaveEnemiga);
-			TNavesEnemigas[i]->SetMovimiento("lineal");
+			TNavesEnemigas[i]->SetMovimiento("pendulo");
 		}
 		else {
 			NaveEnemiga = FabricaNavesAereas->fabricarNave("colmena");
 			NaveEnemiga->SetNombre("Colmena" + FString::FromInt(i));
 			TNavesEnemigas.Add(NaveEnemiga);
-			TNavesEnemigas[i]->SetMovimiento("aleatorio");
+			TNavesEnemigas[i]->SetMovimiento("pendulo");
 		}
 	}
 

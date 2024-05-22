@@ -48,6 +48,15 @@ AEscuadron* ACapitanGEscuadra::GetEscuadron()
 	return BuilderEscuadrones->getEscuadron();
 }
 
+void ACapitanGEscuadra::ConstruirEscuadron(AActor* builder)
+{
+	SetBuilderEscuadrones(builder);
+	FormarEscuadron();
+
+	AEscuadron* escuadron = GetEscuadron();
+	escuadron->DatosEscuadron();
+}
+
 void ACapitanGEscuadra::FormarEscuadron()
 {
 	if (!BuilderEscuadrones) { UE_LOG(LogTemp, Error, TEXT("ConstructLodging(): LodgingBuilder is NULL, make sure it's initialized.")); return; }

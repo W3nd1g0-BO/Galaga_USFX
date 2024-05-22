@@ -31,12 +31,8 @@ void AGalaga_USFXGameMode::BeginPlay()
 		//spawn EA1 y Capitan
 		EA1 = World->SpawnActor<AEscuadronDeAtaqueEA1>(AEscuadronDeAtaqueEA1::StaticClass());
 		Capitan = World->SpawnActor<ACapitanGEscuadra>(ACapitanGEscuadra::StaticClass());
-
-		Capitan->SetBuilderEscuadrones(EA1);
-		Capitan->FormarEscuadron();
-
-		AEscuadron* escuadron = Capitan->GetEscuadron();
-		escuadron->DatosEscuadron();
+		
+		Capitan->ConstruirEscuadron(EA1);
 	}
 
 }

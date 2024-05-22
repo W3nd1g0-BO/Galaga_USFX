@@ -7,6 +7,8 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Engine/StaticMesh.h"
 
+#include "NaveEnemiga.h"
+
 AGalaga_USFXProjectile::AGalaga_USFXProjectile() 
 {
 	// Static reference to the mesh to use for the projectile
@@ -39,6 +41,18 @@ void AGalaga_USFXProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherAc
 	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
 	{
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 20.0f, GetActorLocation());
+	}
+
+	ANaveEnemiga* NaveEnemiga = Cast<ANaveEnemiga>(OtherActor);
+
+	if (NaveEnemiga != nullptr)
+	{
+		NaveEnemiga->SetEnergia(NaveEnemiga->GetEnergia() - 20);
+
+		if (NaveEnemiga->GetEnergia() <= 0)
+		{
+			NaveEnemiga->Destroy();
+		}
 	}
 
 	Destroy();

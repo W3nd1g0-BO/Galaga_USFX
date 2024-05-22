@@ -22,6 +22,11 @@ public:
 
 	FVector velocidad;
 
+	FVector PuntoInicio;
+	FVector PuntoFinal;
+	float Alpha;
+	bool bMovimientoIniciado=false;
+
 protected:
 	virtual void BeginPlay() override;
 public:
@@ -39,5 +44,5 @@ public:
 	void Mov_Aleatoriamente(float DeltaTime);
 	void Mov_FormInfinito(float DeltaTime);
 	void Mov_Horizontal(float DeltaTime);
-	void Mov_Estacionario(float DeltaTime);
+	void Mov_pendulo(float DeltaTime);
 };

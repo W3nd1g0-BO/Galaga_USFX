@@ -45,9 +45,9 @@ UComp_MovimientoNaves* UEstrategiaMovimiento::FuncElegirMovimiento(FString _tipo
     {
 		Mov_lineal(DeltaTime);
 	}
-    else if (_tipoMovimiento.Equals("estacionario"))
+    else if (_tipoMovimiento.Equals("pendulo"))
     {
-        Mov_Estacionario(DeltaTime);
+        Mov_pendulo(DeltaTime);
     }
         return nullptr;
 }
@@ -67,10 +67,30 @@ void UEstrategiaMovimiento::ComprobarLimites(FVector& _nuevaPosicion)
     };
 }
 
-void UEstrategiaMovimiento::Mov_Estacionario(float DeltaTime)
+void UEstrategiaMovimiento::Mov_pendulo(float DeltaTime)
 {
-    
+    if (bMovimientoIniciado==false) 
+    {
+        PuntoInicio = nave->GetActorLocation();
+		PuntoFinal = PuntoInicio + FVector(0.0f, 500.0f, 0.0f);
+        bMovimientoIniciado = true;
+    }
+
+    float velc = 100.0f;
+    Alpha += velc * DeltaTime;
+    NuevaPosicion = FMath::Lerp(PuntoInicio, PuntoFinal, Alpha / 360.0f);
+    nave->SetActorLocation(NuevaPosicion);
+
+    if (Alpha >= 360.0f)
+    {
+        Alpha = 0;
+        FVector aux = PuntoInicio;
+        PuntoInicio = PuntoFinal;
+        PuntoFinal = aux;
+    }
 }
+
+
 
 void UEstrategiaMovimiento::Mov_lineal(float DeltaTime)
 {
